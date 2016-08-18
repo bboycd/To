@@ -1,4 +1,5 @@
 package com.example.bboyc.todolist;
+
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -39,40 +40,42 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                final EditText input = new EditText(MainActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                builder.setView(input)
+
+                        .setMessage("New List")
+
+                        .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+
+
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                array.add(input.getText().toString());
+                                arrayAdapter.notifyDataSetChanged();
+
+                            }
+                        })
+
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+
+
+                Dialog dialog = builder.create();
+                dialog.show();
+
                 Snackbar.make(view, "Add new list", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
 
-        builder.setView(input)
-
-                .setMessage("New List")
-
-                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        array.add(input.getText().toString());
-                        arrayAdapter.notifyDataSetChanged();
-
-                    }
-                })
-
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-
-
-        Dialog dialog = builder.create();
-        dialog.show();
 
 
 
