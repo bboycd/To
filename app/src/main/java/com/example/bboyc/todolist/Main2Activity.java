@@ -44,6 +44,7 @@ public class Main2Activity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
                 final EditText input = new EditText(Main2Activity.this);
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
+                input.getAction(ACTION_DOWN);
 
                 builder.setView(input)
 
