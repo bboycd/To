@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.bboyc.todolist.MainActivity">
+    tools:context="com.example.bboyc.todolist.Main2Activity">
 
 
-
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main2" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -19,5 +18,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/pen"
         android:onClick="onclick"/>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
