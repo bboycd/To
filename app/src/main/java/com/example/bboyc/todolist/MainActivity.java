@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, array);
         listView.setAdapter(arrayAdapter);
 
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                array.remove(i);
+                return false;
+            }
+        });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
