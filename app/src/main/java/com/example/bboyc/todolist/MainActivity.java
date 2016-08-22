@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 array.remove(i);
+                arrayAdapter.notifyDataSetChanged();
                 return false;
             }
         });
