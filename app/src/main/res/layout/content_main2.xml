@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:padding="30dp"
     android:background="@android:color/holo_blue_dark"
-    tools:context="com.example.bboyc.todolist.Main2Activity">
+    tools:context="com.example.bboyc.todolist3.Main2Activity">
 
     <TextView
         android:id="@+id/textView"
