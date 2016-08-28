@@ -19,6 +19,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     ListView listView;
     TextView textView;
     ArrayAdapter<String> arrayAdapter;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         listView = (ListView) findViewById(R.id.list_todo);
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                array.add(input.getText().toString());
+                                db.insert(input.getText().toString());
                                 arrayAdapter.notifyDataSetChanged();
 
                             }

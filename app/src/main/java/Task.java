@@ -1,5 +1,12 @@
-/**
- * Created by bboyc on 8/27/2016.
- */
+import android.provider.BaseColumns;
+
 public class Task {
+
+
+
+    public class TaskEntry implements BaseColumns{
+
+
+
+    }
 }
