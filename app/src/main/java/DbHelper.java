@@ -1,5 +1,6 @@
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -57,6 +58,28 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_TASKS_NAME,task.getTasks());
         db.insert(TABLE_TASKS, null, values);
         db.close();
+    }
+    public List getList(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_LISTS, new String[] { KEY_LISTS_ID,
+        KEY_LISTS_NAME}, KEY_LISTS_ID + "=?",
+                new String[] {String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+        List listData = new List(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), cursor.getString(2));
+        return listData;
+    }
+    public List getTask(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_TASKS, new String[] { KEY_TASKS_ID,
+                        KEY_TASKS_NAME}, KEY_TASKS_ID + "=?",
+                new String[] {String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+        List taskData = new Task(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), cursor.getString(2));
+        return taskData;
     }
 
 
