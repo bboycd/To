@@ -1,3 +1,4 @@
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -41,6 +42,21 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
         onCreate(db);
 
+    }
+
+    public void addList(List list){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_LISTS_NAME,list.getLists());
+        db.insert(TABLE_LISTS, null, values);
+        db.close();
+    }
+    public void addTask(Task task){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_TASKS_NAME,task.getTasks());
+        db.insert(TABLE_TASKS, null, values);
+        db.close();
     }
 
 
