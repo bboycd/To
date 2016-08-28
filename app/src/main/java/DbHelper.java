@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.List;
+
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "db";
@@ -45,43 +47,42 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public void addList(List list){
+    public void addList(Lists lists){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_LISTS_NAME,list.getLists());
         db.insert(TABLE_LISTS, null, values);
         db.close();
     }
-    public void addTask(Task task){
+    public void addTask(Tasks tasks){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_TASKS_NAME,task.getTasks());
         db.insert(TABLE_TASKS, null, values);
         db.close();
     }
-    public List getList(int id){
+    public Lists getList(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_LISTS, new String[] { KEY_LISTS_ID,
         KEY_LISTS_NAME}, KEY_LISTS_ID + "=?",
                 new String[] {String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        List listData = new List(Integer.parseInt(cursor.getString(0)),
+        Lists listsData = new Lists(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2));
-        return listData;
+        return listsData;
     }
-    public List getTask(int id){
+    public Tasks getTasks(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_TASKS, new String[] { KEY_TASKS_ID,
                         KEY_TASKS_NAME}, KEY_TASKS_ID + "=?",
                 new String[] {String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        List taskData = new Task(Integer.parseInt(cursor.getString(0)),
+        Tasks tasksData = new Tasks(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2));
-        return taskData;
+        return tasksData;
     }
-
 
 
 }

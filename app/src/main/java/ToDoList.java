@@ -1,11 +1,11 @@
 
-public class List {
+public class ToDoList {
     private int id;
     private String lists;
     private String tasks;
-    public List(){
+    public ToDoList() {
     }
-    public List(int id, String lists, String tasks){
+    public ToDoList(int id, String lists, String tasks){
         this.id=id;
         this.lists=lists;
         this.tasks=tasks;
