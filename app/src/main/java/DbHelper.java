@@ -86,12 +86,32 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
-    public int updateList(ToDoList toDoList) {
+    public int updateList(ToDoList lists) {
         SQLiteDatabase db =this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_LISTS_NAME, toDoList.getLists());
+        values.put(KEY_LISTS_NAME, lists.getLists());
         return db.update(TABLE_LISTS, values, KEY_LISTS_ID + " =?",
-                new String[]{String.valueOf(toDoList.getId())});
+                new String[]{String.valueOf(lists.getId())});
+    }
+    public int updateTask(ToDoList tasks) {
+        SQLiteDatabase db =this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_TASKS_NAME, tasks.getTasks());
+        return db.update(TABLE_TASKS, values, KEY_TASKS_ID + " =?",
+                new String[]{String.valueOf(tasks.getId())});
+    }
+
+    public void deleteList(ToDoList lists) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_LISTS, KEY_LISTS_ID + " =?",
+                new String[] { String.valueOf(lists.getId())});
+        db.close();
+    }
+    public void deletetask(ToDoList tasks) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TASKS, KEY_TASKS_ID + " =?",
+                new String[]{String.valueOf(tasks.getId())});
+        db.close();
     }
 
 }
